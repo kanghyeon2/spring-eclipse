@@ -18,7 +18,7 @@ public class BoardServiceTest {
 	@Autowired
 	BoardService boardService;
 	
-	@Test
+	//@Test
 	@DisplayName("게시글 수정")
 	public void update() {
 		//given

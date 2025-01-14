@@ -10,7 +10,7 @@
 <div class="container">
 <h3>게시글</h3>
 <div class="panel-heading">
-<button type="button" class="btn btn-info pull-right" id="btnRegister">게시글 등록</button>
+		<button type="button" id="btnRegister" class="btn btn-info">게시글 등록</button>
 </div>
 <table class="table">
 	<thead>
@@ -31,15 +31,19 @@
 	</tbody>
 </table>
 </div>
-<script th:inline="javascript">
-	const result=[[${result}]]
-	if(result){
-		alert("등록완료")
-	}
-	
-	btnRegister.addEventListener("click", ()=>{
-		location.href="register";
-	})
-</script>
+	<script th:inline="javascript">
+	const result = [[${result}]]
+	const remove = [[${remove}]]
+		if(result){			
+			alert("등록완료");
+		}
+		if(remove){
+			alert("삭제완료");
+		}
+		
+		btnRegister.addEventListener("click", () => {
+			location.href="register";
+		})
+	</script>
 </body>
 </html>

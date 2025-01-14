@@ -70,12 +70,20 @@ public class BoardContorller {
 		return "redirect:/board/list";
 	}
 	//삭제
+//	@GetMapping("/remove")
+//	public String remove(@RequestParam(name="bno") Long bno, Model model) {
+//		boardService.remove(bno);
+//		
+//		return "redirect:/board/list";
+//	}
 	@GetMapping("/remove")
-	public String remove(@RequestParam(name="bno") Long bno, Model model) {
-		boardService.remove(bno);
+	public String remove(BoardDTO board, RedirectAttributes rttr) {
+		log.info("remove : " + board);
+		boardService.remove(board.getBno());	
 		
+		//rttr.addAttribute("result", true); = 사라지지않고 계속 남아있음
+		rttr.addFlashAttribute("remove", true);	// 회발성으로 한번만 출력되고 새로고침되면 사라짐
 		return "redirect:/board/list";
 	}
-	
 
 }

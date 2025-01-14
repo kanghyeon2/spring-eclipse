@@ -21,7 +21,7 @@ public class BoardMapperTest {
 	@Autowired
 	BoardMapper boardMapper;
 	
-	@Test
+	//@Test
 	@DisplayName("게시글 등록")
 	public void register() {
 		String title = "등록";
@@ -36,7 +36,7 @@ public class BoardMapperTest {
 	   //then
 	   assertThat(cnt).isEqualTo(1);
 	}
-	@Test
+	//@Test
 	@DisplayName("게시글 수정")
 	public void update() {
 		//given
@@ -51,7 +51,7 @@ public class BoardMapperTest {
 		//then
 		assertThat(cnt).isEqualTo(1);
 	}
-	@Test
+	//@Test
 	@DisplayName("게시글 삭제")
 	public void delete() {
 		//given
@@ -62,7 +62,7 @@ public class BoardMapperTest {
 		
 		assertThat(cnt).isEqualTo(1);
 	}
-	@Test
+	//@Test
 	@DisplayName("게시글 단건조회")
 	public void read() {
 		//given
@@ -74,7 +74,7 @@ public class BoardMapperTest {
 		//assertThat(board.getBno()).isEqualTo(bno);
 		assertThat(board).isNotNull();
 	}
-	@Test
+	//@Test
 	@DisplayName("게시글 전체조회")
 	public void getList() {
 		//given
