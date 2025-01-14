@@ -5,22 +5,22 @@
 <!-- 등록 insert -->
 <insert id="insert" parameterType="boardDTO">
 	insert into tbl_board(bno, title, content, writer)
-	values (seq_board.nextval, #{title}, #{content}, #{writer})
+	 			  values (seq_board.nextval, #{title}, #{content}, #{writer})
 </insert>
 
 <!-- 업데이트 update -->
 <update id="update" parameterType="boardDTO">
  update tbl_board
 	set 
-		title=#{title}
-		content=#{content}
-		writer=#{writer}
+		title=#{title},
+		content=#{content},
+		writer=#{writer},
 		updateDate = sysdate
  where bno = #{bno}
 </update>
 
 <!-- 삭제 delete -->
-<delete id="delete" parameterType="int">
+<delete id="delete" parameterType="Long">
 	delete tbl_board
 	 where bno = #{bno}
 </delete>
