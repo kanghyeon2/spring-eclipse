@@ -11,7 +11,7 @@ public interface BoardService {
 
 	public BoardDTO get(Long bno);
 
-	public List<BoardDTO> getList();
+	public List<BoardDTO> getList(BoardSearchDTO searchDTO);
 	
-	
+	int getCount(BoardSearchDTO searchDTO);
 }

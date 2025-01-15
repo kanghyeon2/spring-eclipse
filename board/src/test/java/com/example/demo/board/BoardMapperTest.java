@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.board.mapper.BoardMapper;
 import com.example.demo.board.service.BoardDTO;
+import com.example.demo.board.service.BoardSearchDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,12 +75,15 @@ public class BoardMapperTest {
 		//assertThat(board.getBno()).isEqualTo(bno);
 		assertThat(board).isNotNull();
 	}
-	//@Test
+	@Test
 	@DisplayName("게시글 전체조회")
 	public void getList() {
 		//given
+		BoardSearchDTO search = new BoardSearchDTO();
+		search.setStart(1);
+		search.setEnd(10);
 		//when
-		List<BoardDTO> list = boardMapper.getList();
+		List<BoardDTO> list = boardMapper.getList(search);
 		//then
 		list.forEach(board -> log.info(board.toString()));
 		assertThat(list).isNotNull();

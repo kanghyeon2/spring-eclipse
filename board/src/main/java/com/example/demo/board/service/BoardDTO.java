@@ -2,6 +2,8 @@ package com.example.demo.board.service;
 
 import java.util.Date;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +15,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardDTO {
 	  private Long bno;
+	  @NotBlank(message = "이름입력")
+	  @NotNull
 	  private String title;
+	  @NotBlank
+	  @NotNull
 	  private String content;
+	  @NotBlank
+	  @NotNull
 	  private String writer;
 	  private Date regdate;
+
 	  private Date updatedate;
 
 }

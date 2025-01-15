@@ -34,11 +34,51 @@
 
 <!-- 전체조회 getList -->
 <select id="getList" resultType="boardDTO">
-  select *
-	from tbl_board
-	<![CDATA[
-   where bno > 0
-	]]>
+SELECT *
+FROM (
+	    SELECT /*+index_desc(TBL_BOARD PK_BOARD)*/
+	    	    ROWNUM RN, 
+	    	    BNO, 
+	    	    TITLE, 
+	    	    WRITER,
+	    	    REGDATE
+	      FROM tbl_board  
+	    <![CDATA[
+	    WHERE ROWNUM <= #{end}
+	    ]]>
+		<include refid="criteria"></include>
+ 		
+) WHERE<![CDATA[ RN >= #{start} ]]>
 </select>
+
+<!-- 카운트 -->
+<select id="getCount" resultType="int">
+  SELECT COUNT(*) FROM TBL_BOARD
+  <where>
+  <include refid="criteria"></include>
+  </where>
+</select>
+
+<sql id="criteria">
+	<if test="keyword !=null and ! keyword.equals('')">
+	  <trim prefix="and (" suffix=")" prefixOverrides="or">
+		<foreach item="type" collection="typeArr">
+		  <trim prefix="or">
+			<choose>
+				<when test="type == 'T'.toString()">
+					TITLE like '%' || #{keyword} || '%'
+				</when>
+				<when test="type == 'C'.toString()">
+					CONTENT like '%' || #{keyword} || '%'
+				</when>
+				<when test="type == 'W'.toString()">
+					WRITER like '%' || #{keyword} || '%'
+				</when>
+			</choose>
+		  </trim>		
+		</foreach>
+	  </trim>	
+	</if>  
+</sql>
 
 </mapper>
