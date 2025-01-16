@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RestController
+@RestController //제이슨형태로 << resposnebody쓸필요 x
 @RequiredArgsConstructor
 @RequestMapping("/dept/")
 public class DeptController {
