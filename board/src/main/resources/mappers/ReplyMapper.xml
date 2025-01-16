@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.board.mapper.ReplyMapper">
+
+<!-- 전체조회 getList -->
+<select id="getList" resultType="replyDTO">
+<![CDATA[
+	SELECT /*+INDEX_DESC( tbl_reply )*/
+			rno,
+			bno,
+			reply,
+			replyer,
+			replydate,
+			updatedate
+	  FROM  tbl_reply
+	 where  bno=#{bno}
+	   and  rno>0
+]]>
+</select>
+
+<!-- 단건조회 read -->
+<select id="read" parameterType="Long" resultType="replyDTO">
+	SELECT *
+	  FROM tbl_reply
+	 WHERE rno = #{rno}
+</select>
+
+<!-- 등록 insert -->
+<insert id="insert" parameterType="replyDTO">
+	insert into tbl_reply(rno, bno, reply, replyer)
+				  values(seq_reply.nextval, #{bno}, #{reply}, #{replyer})
+</insert>
+
+<!-- 업데이트 update -->
+<update id="update" parameterType="replyDTO">
+ update tbl_reply
+	set 
+		reply=#{reply},
+		replyer = #{replyer}
+ where rno = #{rno}
+</update>
+
+<!-- 삭제 delete -->
+<delete id="delete" parameterType="Long">
+	delete tbl_reply
+	 where rno = #{rno}
+</delete>
+
+<select id="getCountByBno" resultType="int">
+	select count(rno)
+	  from tbl_reply
+	 where bno = #{bno}
+</select>
+</mapper>
