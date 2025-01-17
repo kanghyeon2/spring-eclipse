@@ -10,4 +10,5 @@ public interface ReplyService {
 	public boolean modify(ReplyDTO reply);
 
 	public boolean remove(Long rno);
+	
 }

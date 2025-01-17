@@ -46,6 +46,7 @@
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
+			<th>댓글</th>
 			<th>작성자</th>
 			<th>작성일자</th>	
 		</tr>
@@ -54,6 +55,7 @@
 		<tr th:each="board : ${list}">
 			<td th:text="${board.bno}">1</td>
 			<td th:text="${board.title}" th:onclick="|location.href='get?bno=${board.bno}'|">제목</td>
+			<td th:text="${board.replyCnt}">1</td>
 			<td th:text="${board.writer}">홍길동</td>
 			<td th:text="${#dates.format(board.regdate,'yyyy/MM/dd HH:mm:ss')}">2025/01/14</td>
 		</tr>

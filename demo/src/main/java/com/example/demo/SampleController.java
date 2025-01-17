@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -89,12 +90,18 @@ public class SampleController {
 	}
 	
 	@GetMapping("/movie")
-	public String movie(
-			@RequestParam(defaultValue = "20240115", required=false) String date) {
+	public List<String> movie(
+		@RequestParam(defaultValue = "20240115", required=false) String date) {
 		RestTemplate restTemplate = new RestTemplate();
 		String url ="http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=12664b24453335d2c3eca0fdc4b3b013&targetDt="+date;
 		JsonNode node = restTemplate.getForObject(url, JsonNode.class);
-		String name = node.get("boxOfficeResult").get("dailyBoxOfficeList").get(0).get("movieNm").asText();
-		return name;
+		
+		List<String> asd = new ArrayList<>();
+		
+		for(int i=0; i<node.get("boxOfficeResult").get("dailyBoxOfficeList").size(); i++) {
+		String name = node.get("boxOfficeResult").get("dailyBoxOfficeList").get(i).get("movieNm").asText();
+		asd.add(name);
+		}
+		return asd;
 	}
 }

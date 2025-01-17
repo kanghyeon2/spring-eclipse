@@ -27,5 +27,8 @@ public class BoardDTO {
 	  private Date regdate;
 
 	  private Date updatedate;
+	  
+	  //댓글수 업데이트
+	  private int replyCnt;
 
 }

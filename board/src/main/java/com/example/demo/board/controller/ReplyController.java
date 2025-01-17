@@ -33,9 +33,10 @@ public class ReplyController {
 	}
 	
 	//수정처리
+	//form queryString 이면 @RequestBody 쓰면 안됨
 	@PutMapping("/{rno}")
 	public ResponseEntity<String>modify(
-			@RequestBody ReplyDTO replyDTO,
+			@RequestBody ReplyDTO replyDTO, //제이슨
 			@PathVariable(name="rno") Long rno){
 		replyDTO.setRno(rno);
 		return replyservice.modify(replyDTO)==true
@@ -60,7 +61,7 @@ public class ReplyController {
 	@GetMapping("/pages/{bno}/{page}")
 	public ReplyPageDTO getList(@PathVariable(name="page") int page,
 								@PathVariable(name="bno") Long bno) {
-		ReplySearchDTO replySearchDTO = new ReplySearchDTO(page, 10);
+		ReplySearchDTO replySearchDTO = new ReplySearchDTO(page, 3);
 		
 		return replyservice.getList(replySearchDTO, bno);
 	}

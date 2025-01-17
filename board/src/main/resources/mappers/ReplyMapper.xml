@@ -4,18 +4,20 @@
 
 <!-- 전체조회 getList -->
 <select id="getList" resultType="replyDTO">
-<![CDATA[
-	SELECT /*+INDEX_DESC( tbl_reply )*/
-			rno,
-			bno,
-			reply,
-			replyer,
-			replydate,
-			updatedate
-	  FROM  tbl_reply
-	 where  bno=#{bno}
-	   and  rno>0
-]]>
+SELECT * FROM (
+				SELECT /*+INDEX_DESC( tbl_reply pk_reply)*/
+						ROWNUM rn,
+						rno,
+						bno,
+						reply,
+						replyer,
+						replydate,
+						updatedate
+				  FROM  tbl_reply
+				 where  bno=#{bno}
+				   and  rno>0
+				   and  ROWNUM <![CDATA[ <= #{cri.end}
+]]>) WHERE rn >= #{cri.start}
 </select>
 
 <!-- 단건조회 read -->
@@ -36,7 +38,7 @@
  update tbl_reply
 	set 
 		reply=#{reply},
-		replyer = #{replyer}
+		updatedate = sysdate
  where rno = #{rno}
 </update>
 
@@ -44,6 +46,11 @@
 <delete id="delete" parameterType="Long">
 	delete tbl_reply
 	 where rno = #{rno}
+</delete>
+
+<delete id="deleteByBno" parameterType="Long">
+	delete tbl_reply
+	 where bno = #{bno}
 </delete>
 
 <select id="getCountByBno" resultType="int">

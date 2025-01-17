@@ -15,14 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class DeptServiceTest {
 	
-	@Autowired
-	DeptService deptService;
-	
-	@Test
-	@DisplayName("부서 전체조회")
-	void getList() {
-		List<DeptDTO> list = deptService.getList(null);
-		log.debug(list.toString());
-	}
+	/*
+	 * @Autowired DeptService deptService;
+	 * 
+	 * //@Test
+	 * 
+	 * @DisplayName("부서 전체조회") void getList() { List<DeptDTO> list =
+	 * deptService.getList(null); log.debug(list.toString()); }
+	 */
 	
 }

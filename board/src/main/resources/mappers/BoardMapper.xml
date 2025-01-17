@@ -41,7 +41,8 @@ FROM (
 	    	    BNO, 
 	    	    TITLE, 
 	    	    WRITER,
-	    	    REGDATE
+	    	    REGDATE,
+	    	    REPLYCNT
 	      FROM tbl_board  
 	    <![CDATA[
 	    WHERE ROWNUM <= #{end}
@@ -58,6 +59,14 @@ FROM (
   <include refid="criteria"></include>
   </where>
 </select>
+<!-- 댓글수업데이트 -->
+<update id="updateReplyCnt">
+	update tbl_board 
+	set replycnt = replycnt + #{amount} 
+	where bno = #{bno} 
+</update>
+
+
 
 <sql id="criteria">
 	<if test="keyword !=null and ! keyword.equals('')">
