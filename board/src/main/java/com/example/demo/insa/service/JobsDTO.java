@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobsDTO {
-	private String job_id;
-	private String job_title;
-	private Long min_salary;
-	private Long max_salary;
+	private String jobId;
+	private String jobTitle;
+	private Long minSalary;
+	private Long maxSalary;
 }

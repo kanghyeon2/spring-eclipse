@@ -6,4 +6,8 @@ public interface EmployeesService {
 	public List<EmployeesDTO> getList();
 	
 	public void register(EmployeesDTO employees);
+	
+	public List<JobsDTO> getJobList();
+	
+	public boolean remove(Long employeeId);
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.insa.mapper.EmployeesMapper;
 import com.example.demo.insa.service.EmployeesDTO;
 import com.example.demo.insa.service.EmployeesService;
+import com.example.demo.insa.service.JobsDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,16 @@ public class EmployeesServiceImpl implements EmployeesService{
 	@Override
 	public void register(EmployeesDTO employees) {
 		employeesMapper.insert(employees);
+	}
+
+	@Override
+	public List<JobsDTO> getJobList() {
+		return employeesMapper.getJobList();
+	}
+
+	@Override
+	public boolean remove(Long employeeId) {
+		return employeesMapper.delete(employeeId)==1;
 	}
 
 }

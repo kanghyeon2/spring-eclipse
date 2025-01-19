@@ -14,6 +14,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
+		<div class="panel-heading">
+				<button type="button" id="btnRegister" class="btn btn-info">게시글 등록</button>
+		</div>
 			<h2>사원 목록</h2>
 			<table class="table text-center">
 				<thead>
@@ -32,7 +35,7 @@
 						<td th:text="${employees.jobId}">PROGRAMER</td>
 						<td class="text-center">
 							<button class="btnUpd">조회</button>
-							<button class="btnDel">삭제</button>
+							<button class="btnDel" th:onclick="|location.href='delete?employeeId=${employees.employeeId}'|">삭제</button>
 						</td>
 					</tr>	
 				</tbody>
@@ -41,6 +44,11 @@
 	</div>
 		
 </div>
-
+<script th:inline="javascript">
+	btnRegister.addEventListener("click", () => {
+		location.href="register";
+	})
+	
+</script>
 </body>
 </html>
