@@ -22,7 +22,7 @@
 <!-- 등록 insert -->
 <insert id="insert" parameterType="EmployeesDTO">
 	insert into employees(employee_id, first_name, last_name, email, hire_date, job_id)
-	 			  values (EMPLOYEES_SEQ.nextval, #{firstName}, #{lastName}, #{email}, #{hireDate}, #{jobId})
+	 			  values (EMPLOYEES_SEQ.nextval, #{firstName}, #{lastName}, #{email}, NVL(#{hireDate}, sysdate), #{jobId})
 </insert>
 
 

@@ -34,7 +34,7 @@ public class EmployeesServiceImpl implements EmployeesService{
 
 	@Override
 	public boolean remove(Long employeeId) {
-		return employeesMapper.delete(employeeId)==1;
+		return employeesMapper.delete(employeeId)==1 ? true : false;
 	}
 
 }

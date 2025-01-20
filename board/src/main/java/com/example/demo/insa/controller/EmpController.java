@@ -33,7 +33,7 @@ public class EmpController {
 	
 	//job
 		@GetMapping("/register")
-		public void register(Model model) {
+		public void register(Model model, EmployeesDTO employees) {
 			model.addAttribute("jobList", employeesService.getJobList());
 		}
 	//등록
@@ -42,7 +42,7 @@ public class EmpController {
 							   BindingResult bindingResult,
 				               RedirectAttributes rttr) {
 			
-			 //if(bindingResult.hasErrors()) { return "emp/register"; }
+			 if(bindingResult.hasErrors()) { return "emp/register"; }
 			
 			
 			log.info("register" + employees);
